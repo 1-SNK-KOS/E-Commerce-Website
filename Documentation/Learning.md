@@ -49,4 +49,6 @@
 
 - Learn about file system (fs) of nodejs and unlink function in it  
 
-- Learn about cloudinary and multer options
+- Learn about cloudinary and multer options  
+
+- Learn about Http and in that understand the mechanism as it will enchance ur knowledge in DSA , OS , Networking(proxy and hoping concepts)
