@@ -44,3 +44,9 @@
 - Learn about package bcrypt , jsonWebToken(jwt Token) , with it methods and hooks of mongoose , isModified  
 
 - this reference is only available to default function syntax not in arrow function  
+
+- Learn about Access Token and refresh Token 
+
+- Learn about file system (fs) of nodejs and unlink function in it  
+
+- Learn about cloudinary and multer options
