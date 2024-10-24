@@ -30,3 +30,17 @@
 
 - Server Status Code  
   Study about it
+
+- MongoDb save id in bison data not in json data . Learn about it
+
+- Learn about indexing general and in MongoDb too
+
+- Learn about minimize feature of mongoDB   
+
+- Learn and practice more about DB designing and schema in MongoDb
+
+- Learn About mongoose aggregation pipelines and its package too
+
+- Learn about package bcrypt , jsonWebToken(jwt Token) , with it methods and hooks of mongoose , isModified  
+
+- this reference is only available to default function syntax not in arrow function  
