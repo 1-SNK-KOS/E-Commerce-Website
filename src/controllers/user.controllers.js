@@ -222,6 +222,57 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   }
 })
 
+const changeCurrentPassword = asyncHandler(async (req, res) => {
+
+  const { oldPassword, newPassword } = req.body;
+
+  if (!(oldPassword || newPassword)) {
+    throw new apiError(400, "Please provide old password and new password");
+  }
+
+  const user = await User.findById(req.user?._id);
+
+  if (!user) {
+    throw new apiError(404, "User not found");
+  }
+
+  const isPasswordValid = await user.isPasswordCorrect(oldPassword);
+
+  if (!isPasswordValid) {
+    throw new apiError(400, "Invalid old password");
+  }
+
+  user.password = newPassword;
+
+  await user.save({ validateBeforeSave: false });
+
+  return res
+    .status(200)
+    .json(
+      new apiResponse(
+        200,
+        "Password changed successfully",
+        {}
+      )
+    )
+
+})
+
+const getCurrentUser = asyncHandler(async (req, res) => {
+  return res
+    .status(200)
+    .json(
+      new apiResponse(
+        200,
+        "User fetched successfully",
+        {
+          user: req.user
+        }
+      )
+    )
+})
+
+
 
 
 export {
@@ -229,4 +280,7 @@ export {
   loginUser,
   logoutUser,
   refreshAccessToken,
+  changeCurrentPassword,
+  getCurrentUser,
+
 }
