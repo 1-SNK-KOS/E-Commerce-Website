@@ -25,7 +25,7 @@ const userSchema = new Schema(
         },
         refreshToken : {
             type : String,
-            required : [true,"Refresh Token is required"],
+            // required : [true,"Refresh Token is required"],
         },
         orderHistory : [
             {
@@ -46,14 +46,16 @@ const userSchema = new Schema(
 
     },{
         timestamps : true,
-        minimize : false
+        minimize : false    // TODO : See what happen removing it
     },
 )
 
-userSchema.pre("save", async function (next){
-    if(!this.isModified("password")) next();
 
-    await bcrypt.hash(this.password,10);
+
+userSchema.pre("save", async function (next){
+    if(!this.isModified("password")) return next();
+
+    this.password = await bcrypt.hash(this.password,10);
     next();
 })
 
