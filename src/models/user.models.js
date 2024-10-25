@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 
 const userSchema = new Schema(
     {
-        username : {
+        fullName : {
             type : String,
             required : [true,"Username is required"],
             trim : true
@@ -65,7 +65,7 @@ userSchema.methods.generateAccessToken = function(){
     return jwt.sign(
         {
             _id : this._id,
-            username : this.username,
+            fullName : this.fullName,
             email : this.email,
             // role : this.role // in future for seller too 
         },
