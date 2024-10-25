@@ -47,8 +47,18 @@
 
 - Learn about Access Token and refresh Token 
 
-- Learn about file system (fs) of nodejs and unlink function in it  
+Learn about file system (fs) of nodejs and unlink function in it  
 
 - Learn about cloudinary and multer options  
 
 - Learn about Http and in that understand the mechanism as it will enchance ur knowledge in DSA , OS , Networking(proxy and hoping concepts)
+
+- Learn about mongoDb aggregration piplines , operators and database access from mongoose  
+
+- Point on $unset and express.static and postman form-data vs raw json  
+  [ChatGpt Link](https://chatgpt.com/share/671beea6-4734-800c-9f5d-e60c2ebf3986)  
+
+- Study about accessToken , refreshToken , session , cookies  , jwt token , bcrypt  (For interview question see the starting intro of  [Youtube Video Link](https://www.youtube.com/watch?v=L2_gIrDxCes&list=PLu71SKxNbfoBGh_8p_NS-ZAh6v7HhYqHW&index=18)) (write n article on refresh and accesstoken (on hashnode more prefer by HC sir))
+
+
+- Surfer request and response content of express  
