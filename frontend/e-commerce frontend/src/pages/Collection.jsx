@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext.jsx'
 import { assets } from '../assets/frontend_assets/assets.js';
 import { ProductItem, Title } from '../components/index.js';
+import { Await } from 'react-router-dom';
 const Collection = () => {
 
   const { products } = useContext(ShopContext);
@@ -10,6 +11,7 @@ const Collection = () => {
   const [filterProduct, setFilterProduct] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
+  const [sortType,setSortType] = useState('relevant');
 
   const toggleCategory = (e) => {
 
@@ -23,27 +25,73 @@ const Collection = () => {
 
 
   const toggleSubCategory = (e) => {
-      
-    if(subCategory.includes(e.target.value)){
+
+    if (subCategory.includes(e.target.value)) {
       setSubCategory(prev => prev.filter(item => item !== e.target.value));
-    }else{
-      setSubCategory(prev => [...prev,e.target.value]);
+    } else {
+      setSubCategory(prev => [...prev, e.target.value]);
     }
   }
 
-  useEffect(() => {
-    setFilterProduct(products);
-  }, [products]);
+  const applyFilter =  () => {
 
-  useEffect(() => {
-    console.log(category);
+    let productsCopy = products.slice();
 
-  }, [category])
+    if (category.length > 0) {
+      productsCopy = productsCopy.filter(item => category.includes(item.category));
+    }
 
-  useEffect(() => {
-    console.log(subCategory);
+
+    if (subCategory.length > 0) {
+      productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory));
+    }
+   setFilterProduct(productsCopy);
+    console.log(productsCopy);
+    // sortProduct('nope'); //NOTE : This code is not working for operation like first sorting then filtering . TO know more read DOCS
+    sortProduct('nope',productsCopy);
+  }
+
+  const sortProduct = (check = '',productToSort = filterProduct) => {
+    if(check === 'nope' && sortType === 'relevant'){
+      return;
+    }
+
+    // let sortfpCopy =  filterProduct.slice();
+    let sortfpCopy =  productToSort.slice();
+    console.log(sortType);
+    console.log(sortfpCopy);
+    switch(sortType){
+      case 'low-high':
+        setFilterProduct(sortfpCopy.sort((a,b) => (a.price-b.price))); 
+        break;
+
+      case 'high-low':
+        setFilterProduct(sortfpCopy.sort((a,b) => (b.price-a.price)));
+      break;
+
+      default:
+      applyFilter();
+      break;
+    }
     
-  },[subCategory])
+  }
+
+  useEffect(()=>{
+   sortProduct();
+  },[sortType])
+
+  // useEffect(() => {
+  //   setFilterProduct(products);
+  // }, [products]);
+
+  useEffect(() => {
+  
+    applyFilter();
+
+
+  }, [category, subCategory])
+
+
 
 
   return (
@@ -74,13 +122,13 @@ const Collection = () => {
           <p className='mb-3 text-sm font-medium'>TYPE</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={'Topwear'}  onChange={toggleSubCategory}/>Topwear
+              <input type="checkbox" className='w-3' value={'Topwear'} onChange={toggleSubCategory} />Topwear
             </p>
             <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={'BottomWear'} onChange={toggleSubCategory} />BottomWear
+              <input type="checkbox" className='w-3' value={'Bottomwear'} onChange={toggleSubCategory} />BottomWear
             </p>
             <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={' WinterWear'}  onChange={toggleSubCategory}/>WinterWear
+              <input type="checkbox" className='w-3' value={'Winterwear'} onChange={toggleSubCategory} />WinterWear
             </p>
           </div>
         </div>
@@ -90,10 +138,10 @@ const Collection = () => {
         <div className='flex  justify-between text-base sm:text-2xl mb-4'>
           <Title text1={'ALL'} text2={'COLLECTIONS'} />
           {/* Product Sort */}
-          <select className='border-2 border-gray-300 rounded-xl px-2 text-sm'>
-            <option value="relevant">Sort by: Relevant</option>
-            <option value="low-high">Sort by: Low to High</option>
-            <option value="high-low">Sort by: High to Low</option>
+          <select onChange={(e) => setSortType(e.target.value)} className='border-2 border-gray-300 rounded-xl px-2 text-sm'>
+            <option value={"relevant"}>Sort by: Relevant</option>
+            <option value={"low-high"}>Sort by: Low to High</option>
+            <option value={"high-low"}>Sort by: High to Low</option>
             {/* <option value="a-z">Sort by: A to Z</option> */}
             {/* <option value="z-a">Sort by: Z to A</option> */}
           </select>
