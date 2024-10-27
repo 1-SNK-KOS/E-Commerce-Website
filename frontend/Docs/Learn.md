@@ -11,3 +11,10 @@
   [Claude Link](https://claude.ai/chat/abe0b33c-cb41-4474-b223-a51526d05e24)  
 
 - Learn about sort in JS 
+
+
+- Understand and practice project of this complexity and more of it to understand better  
+
+- An empty object is a truthy value !important (Learn the basic of JS)
+
+- Learn about objects and its creation in js

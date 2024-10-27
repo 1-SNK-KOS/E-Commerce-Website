@@ -5,7 +5,7 @@ import { ProductItem, Title } from '../components/index.js';
 
 const Collection = () => {
 
-  const { products } = useContext(ShopContext);
+  const { products, search , showSearch } = useContext(ShopContext);
 
   const [showFilter, setShowFilter] = useState(false);
   const [filterProduct, setFilterProduct] = useState([]);
@@ -37,6 +37,10 @@ const Collection = () => {
 
     let productsCopy = products.slice();
 
+    if(showSearch && search?.trim() !== ''){
+      productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.trim().toLowerCase() ));
+    }
+
     if (category.length > 0) {
       productsCopy = productsCopy.filter(item => category.includes(item.category));
     }
@@ -46,7 +50,7 @@ const Collection = () => {
       productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory));
     }
     setFilterProduct(productsCopy);
-    console.log(productsCopy);
+    // console.log(productsCopy);
     // sortProduct('nope'); //NOTE : This code is not working for operation like first sorting then filtering . TO know more read DOCS
     sortProduct('nope', productsCopy);
   }
@@ -89,7 +93,7 @@ const Collection = () => {
     applyFilter();
 
 
-  }, [category, subCategory])
+  }, [category, subCategory, search , showSearch])
 
 
 

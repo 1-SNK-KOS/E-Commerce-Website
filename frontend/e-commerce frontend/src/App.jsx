@@ -1,9 +1,12 @@
 import { Routes , Route } from 'react-router-dom'
 import { Home, Login, About, Collection, Contact, Product, Cart, PlaceOrder, Orders } from './pages/index.js'
 import {Footer, Navbar, SearchBar} from './components/index.js'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+      <ToastContainer/>
       <Navbar/>
       <SearchBar/>
       <Routes>

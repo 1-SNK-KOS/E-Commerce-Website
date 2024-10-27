@@ -8,6 +8,8 @@ import OurPolicy from "./OurPolicy";
 import NewsLetterBox from "./NewsLetterBox";
 import Footer from "./Footer";
 import SearchBar from "./SearchBar";
+import RelatedProduct from "./RelatedProduct";
+
 
 export {
     Navbar,
@@ -20,6 +22,7 @@ export {
     NewsLetterBox,
     Footer,
     SearchBar,
+    RelatedProduct,
     
 
 }
