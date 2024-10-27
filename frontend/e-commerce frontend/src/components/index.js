@@ -7,6 +7,7 @@ import BestSeller from "./BestSeller";
 import OurPolicy from "./OurPolicy";
 import NewsLetterBox from "./NewsLetterBox";
 import Footer from "./Footer";
+import SearchBar from "./SearchBar";
 
 export {
     Navbar,
@@ -18,5 +19,7 @@ export {
     OurPolicy,
     NewsLetterBox,
     Footer,
+    SearchBar,
+    
 
 }

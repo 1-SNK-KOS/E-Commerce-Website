@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext.jsx'
 import { assets } from '../assets/frontend_assets/assets.js';
 import { ProductItem, Title } from '../components/index.js';
-import { Await } from 'react-router-dom';
+
 const Collection = () => {
 
   const { products } = useContext(ShopContext);
@@ -11,7 +11,7 @@ const Collection = () => {
   const [filterProduct, setFilterProduct] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
-  const [sortType,setSortType] = useState('relevant');
+  const [sortType, setSortType] = useState('relevant');
 
   const toggleCategory = (e) => {
 
@@ -33,7 +33,7 @@ const Collection = () => {
     }
   }
 
-  const applyFilter =  () => {
+  const applyFilter = () => {
 
     let productsCopy = products.slice();
 
@@ -45,47 +45,47 @@ const Collection = () => {
     if (subCategory.length > 0) {
       productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory));
     }
-   setFilterProduct(productsCopy);
+    setFilterProduct(productsCopy);
     console.log(productsCopy);
     // sortProduct('nope'); //NOTE : This code is not working for operation like first sorting then filtering . TO know more read DOCS
-    sortProduct('nope',productsCopy);
+    sortProduct('nope', productsCopy);
   }
 
-  const sortProduct = (check = '',productToSort = filterProduct) => {
-    if(check === 'nope' && sortType === 'relevant'){
+  const sortProduct = (check = '', productToSort = filterProduct) => {
+    if (check === 'nope' && sortType === 'relevant') {
       return;
     }
 
     // let sortfpCopy =  filterProduct.slice();
-    let sortfpCopy =  productToSort.slice();
+    let sortfpCopy = productToSort.slice();
     console.log(sortType);
     console.log(sortfpCopy);
-    switch(sortType){
+    switch (sortType) {
       case 'low-high':
-        setFilterProduct(sortfpCopy.sort((a,b) => (a.price-b.price))); 
+        setFilterProduct(sortfpCopy.sort((a, b) => (a.price - b.price)));
         break;
 
       case 'high-low':
-        setFilterProduct(sortfpCopy.sort((a,b) => (b.price-a.price)));
-      break;
+        setFilterProduct(sortfpCopy.sort((a, b) => (b.price - a.price)));
+        break;
 
       default:
-      applyFilter();
-      break;
+        applyFilter();
+        break;
     }
-    
+
   }
 
-  useEffect(()=>{
-   sortProduct();
-  },[sortType])
+  useEffect(() => {
+    sortProduct();
+  }, [sortType])
 
   // useEffect(() => {
   //   setFilterProduct(products);
   // }, [products]);
 
   useEffect(() => {
-  
+
     applyFilter();
 
 

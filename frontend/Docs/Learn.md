@@ -10,4 +10,4 @@
 - The functionality of sorting first then filtering . why my function didn't work at first ?  Study how ppl apply this is real world  
   [Claude Link](https://claude.ai/chat/abe0b33c-cb41-4474-b223-a51526d05e24)  
 
-- 
+- Learn about sort in JS 
